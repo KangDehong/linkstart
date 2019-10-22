@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>我的积分 - jeegou开发站- Powered by JSPGOU</title>
+<link href="static/css/index.css" type="text/css" rel="stylesheet">
+<link href="static/css/member.css" type="text/css" rel="stylesheet">
+<script src="static/js/jquery.js" type="text/javascript"></script>
+<script src="static/js/WdatePicker.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function() {
+	$("#jvForm").validate();
+});
+
+function checkStatus(status){
+	if(status==1){
+		$("#status").attr("value",'');
+		$("#useStatus").attr("value",'');
+	}else{
+		$("#status").attr("value",status);
+		$("#useStatus").attr("value",'');
+	}
+    $("#jvForm").submit();
+ }
+
+function checkUseStatus(useStatus){
+	 $("#useStatus").attr("value",useStatus);
+     $("#jvForm").submit();
+}
+</script>
+</head>
+<body>
+<div id="Topbar" class="Topbar">
+		<div class="ctr cf">
+			<ul class="Topbar-menu fr">
+				<li class="Topbar-menu-item ib"><a href="javascript:;">我的JSPGOU</a></li>
+				<li class="Topbar-menu-item ib"><a href="javascript:;">收藏夹</a></li>
+				<!--<li class="Topbar-menu-item ib"><a target="_blank" href="">网站导航</a>-->
+				
+			</ul>
+			    <ul class="Topbar-welcome fl" id="top_user_bar">			   
+				    <li class="Topbar-welcome-item">Hi,<font color="red">  ioipiu  </font>欢迎
+
+来到JSPGOU商城</li>
+				   	<li class="Topbar-welcome-item"><a href="javascript:;">退出登录</a></li>
+			    </ul>
+  
+  
+  
+		</div>
+	</div>
+	
+	<script type="text/javascript">
+		console.log(1);
+		localStorage.setItem("sessionKey",'bf3eef77a25894d1fccaa6ffc0cb8d5740171a77de3be7844e8eb49e587669017371d2b6b14d334a7cd26fb0d59f055e'); 
+		localStorage.setItem("userName", 'ioipiu'); 
+	
+	 $(document).ready(function(){
+		  $(".number_input").keyup(function(){
+			    //替换掉所有非数字字符
+		    	$(this).val($(this).val().replace(/[^\d]/g,''))
+		  });
+	});
+ </script><script src="static/js/jquery.js" type="text/javascript"></script>
+<div class="Header">
+    <div class="ctr pr">
+        <a href="javascript:;"><div class="Logo">
+                <img src="static/picture/logo.jpg" width="158" height="58">
+            </div></a>
+        <form class="Search" id="searchForm" action="/search.jspx">
+            <input id="search_form_input" class="Search-input zi2" type="text" name="q" id="q" value="" type="text" placeholder="请输入关键词" onfocus="if(this.value=='请输入关键词')this.value=''" maxlength="50" onblur="if(this.value=='')this.value='请输入关键词'">
+
+                <!--<button class="Search-submit" type="submit">搜 索</button>-->
+                              <!-- <input class="Search-submit"  value="搜索" onclick="sousuo();"/>-->
+                          <input class="Search-submit" value="搜索" onclick="sousuo();" type="button">
+        </form>
+        <div class="Search-hot">
+               <a id="请输入关键词" onclick="parssKey('请输入关键词');" class="gray">请输入关键词</a>
+             <a id="手机" onclick="parssKey('手机');" class="gray">手机</a>
+             <a id="数码" onclick="parssKey('数码');" class="gray">数码</a>
+             <a id="" onclick="parssKey('');" class="gray"></a>
+             <a id="1" onclick="parssKey('1');" class="gray">1</a>
+             <a id="日用百货" onclick="parssKey('日用百货');" class="gray">日用百货</a>
+              
+        </div>
+        <script type="text/javascript">
+            function parssKey(val) {
+            	$("input[name='q']").val(val);
+                document.getElementById("searchForm").submit();
+            }
+
+                        function sousuo(){
+    
+                var a=$("input[name='q']").val();
+                if(a=="请输入关键词"){
+                    alert("亲！请输入关键词");
+                }else{
+                    document.getElementById("searchForm").submit();
+
+                }
+            } 
+
+           
+        </script>
+        <div class="top_shopping">
+        	<i></i>
+        		<a href="javascript:;">我的购物车(<span id="cart_total_items"></span>) </a>
+        </div>
+
+          <script type="text/javascript">
+	              $('#cart_total_items').html(Shop.cartTotalItems());
+            </script>
+    </div>
+</div><!--商品类目栏 begin  -->
+	<div class="Nav">
+		<ul class="ctr cf pr">
+			<li id="nav_category" class="Nav-item Nav-category fl zi6 ">
+				<!--  <h2 class="tac">全部商品分类</h2>-->
+				<ul class="Nav-catelist">
+					       					<li class="Nav-catelist-item even">
+						<ul class="Nav-cate-sublist">
+
+							 <li><a target="_blank" href="javascript:;">手机</a></li> 
+							 <li><a target="_blank" href="javascript:;">笔记本</a></li> 
+							 <li><a target="_blank" href="javascript:;">电脑整机</a></li> 
+							
+							
+							<ul class="Nav-cate-detail">
+							        <div class="list">
+									<li class="cf">
+										<h4 class="fl">   
+										      
+											<a target="_blank" class="nav-menu-subs" href="javascript:;">手机</a>
+										</h4>
+											<ul class="Nav-cate-detail-list">
+												<li><a target="_blank" href="javascript:;">三星</a></li>
+												<li><a target="_blank" href="javascript:;">苹果</a></li>
+												<li><a target="_blank" href="javascript:;">华为</a></li>
+											</ul>	
+									</li>
+									<li class="cf">
+										<h4 class="fl">   
+										      
+											<a target="_blank" class="nav-menu-subs" href="javascript:;">笔记本</a>
+										</h4>
+											<ul class="Nav-cate-detail-list">
+												<li><a target="_blank" href="javascript:;">联想</a></li>
+											</ul>	
+									</li>
+									<li class="cf">
+										<h4 class="fl">   
+										      
+											<a target="_blank" class="nav-menu-subs" href="javascript:;">电脑整机</a>
+										</h4>
+											<ul class="Nav-cate-detail-list">
+												<li><a target="_blank" href="javascript:;">平板电脑</a></li>
+												<li><a target="_blank" href="javascript:;">台式机</a></li>
+											</ul>	
+									</li>
+									<li class="cf">
+										<h4 class="fl">   
+										      
+											<a target="_blank" class="nav-menu-subs" href="javascript:;">办公</a>
+										</h4>
+											<ul class="Nav-cate-detail-list">
+												<li><a target="_blank" href="javascript:;">文具</a></li>
+												<li><a target="_blank" href="javascript:;">打印机</a></li>
+											</ul>	
+									</li>
+									<li class="cf">
+										<h4 class="fl">   
+										      
+											<a target="_blank" class="nav-menu-subs" href="javascript:;">摄影摄像</a>
+										</h4>
+											<ul class="Nav-cate-detail-list">
+												<li><a target="_blank" href="javascript:;">相机</a></li>
+												<li><a target="_blank" href="javascript:;">单反</a></li>
+											</ul>	
+									</li>
+								 </div>
+							</ul>
+					     	</ul>
+					</li>
+					<li class="Nav-catelist-item even">
+						<ul class="Nav-cate-sublist">
+
+							 <li><a target="_blank" href="javascript:;">女装</a></li> 
+							 <li><a target="_blank" href="javascript:;">男装</a></li> 
+							 <li><a target="_blank" href="javascript:;">童装</a></li> 
+							
+							
+							<ul class="Nav-cate-detail">
+							        <div class="list">
+									<li class="cf">
+										<h4 class="fl">   
+										      
+											<a target="_blank" class="nav-menu-subs" href="javascript:;">女装</a>
+										</h4>
+											<ul class="Nav-cate-detail-list">
+												<li><a target="_blank" href="javascript:;">浪漫裙装</a></li>
+												<li><a target="_blank" href="javascript:;">精选上装</a></li>
+											</ul>	
+									</li>
+									<li class="cf">
+										<h4 class="fl">   
+										      
+											<a target="_blank" class="nav-menu-subs" href="javascript:;">男装</a>
+										</h4>
+											<ul class="Nav-cate-detail-list">
+												<li><a target="_blank" href="javascript:;">男士外套</a></li>
+												<li><a target="_blank" href="javascript:;">男士裤装</a></li>
+											</ul>	
+									</li>
+									<li class="cf">
+										<h4 class="fl">   
+										      
+											<a target="_blank" class="nav-menu-subs" href="javascript:;">童装</a>
+										</h4>
+											<ul class="Nav-cate-detail-list">
+												<li><a target="_blank" href="javascript:;">亲子装</a></li>
+												<li><a target="_blank" href="javascript:;">套装</a></li>
+											</ul>	
+									</li>
+									<li class="cf">
+										<h4 class="fl">   
+										      
+											<a target="_blank" class="nav-menu-subs" href="javascript:;">内衣</a>
+										</h4>
+											<ul class="Nav-cate-detail-list">
+											</ul>	
+									</li>
+									<li class="cf">
+										<h4 class="fl">   
+										      
+											<a target="_blank" class="nav-menu-subs" href="javascript:;">裤子</a>
+										</h4>
+											<ul class="Nav-cate-detail-list">
+											</ul>	
+									</li>
+								 </div>
+							</ul>
+					     	</ul>
+					</li>
+					<li class="Nav-catelist-item even">
+						<ul class="Nav-cate-sublist">
+
+							 <li><a target="_blank" href="javascript:;">女包</a></li> 
+							 <li><a target="_blank" href="javascript:;">男鞋</a></li> 
+							 <li><a target="_blank" href="javascript:;">童鞋</a></li> 
+							
+							
+							<ul class="Nav-cate-detail">
+							        <div class="list">
+									<li class="cf">
+										<h4 class="fl">   
+										      
+											<a target="_blank" class="nav-menu-subs" href="javascript:;">女包</a>
+										</h4>
+											<ul class="Nav-cate-detail-list">
+												<li><a target="_blank" href="javascript:;">单肩包</a></li>
+												<li><a target="_blank" href="javascript:;">双肩包</a></li>
+											</ul>	
+									</li>
+									<li class="cf">
+										<h4 class="fl">   
+										      
+											<a target="_blank" class="nav-menu-subs" href="javascript:;">男鞋</a>
+										</h4>
+											<ul class="Nav-cate-detail-list">
+												<li><a target="_blank" href="javascript:;">休闲皮鞋</a></li>
+												<li><a target="_blank" href="javascript:;">板鞋</a></li>
+											</ul>	
+									</li>
+									<li class="cf">
+										<h4 class="fl">   
+										      
+											<a target="_blank" class="nav-menu-subs" href="javascript:;">童鞋</a>
+										</h4>
+											<ul class="Nav-cate-detail-list">
+											</ul>	
+									</li>
+									<li class="cf">
+										<h4 class="fl">   
+										      
+											<a target="_blank" class="nav-menu-subs" href="javascript:;">女鞋</a>
+										</h4>
+											<ul class="Nav-cate-detail-list">
+											</ul>	
+									</li>
+									<li class="cf">
+										<h4 class="fl">   
+										      
+											<a target="_blank" class="nav-menu-subs" href="javascript:;">男包</a>
+										</h4>
+											<ul class="Nav-cate-detail-list">
+											</ul>	
+									</li>
+								 </div>
+							</ul>
+					     	</ul>
+					</li>
+					<li class="Nav-catelist-item even">
+						<ul class="Nav-cate-sublist">
+
+							 <li><a target="_blank" href="javascript:;">生活电器</a></li> 
+							
+							
+							<ul class="Nav-cate-detail">
+							        <div class="list">
+									<li class="cf">
+										<h4 class="fl">   
+										      
+											<a target="_blank" class="nav-menu-subs" href="javascript:;">生活电器</a>
+										</h4>
+											<ul class="Nav-cate-detail-list">
+												<li><a target="_blank" href="javascript:;">平板电视</a></li>
+												<li><a target="_blank" href="javascript:;">空调</a></li>
+												<li><a target="_blank" href="javascript:;">洗衣机</a></li>
+											</ul>	
+									</li>
+								 </div>
+							</ul>
+					     	</ul>
+					</li>
+					<li class="Nav-catelist-item even">
+						<ul class="Nav-cate-sublist">
+
+							 <li><a target="_blank" href="javascript:;">五金工具</a></li> 
+							 <li><a target="_blank" href="javascript:;">卧室家具</a></li> 
+							
+							
+							<ul class="Nav-cate-detail">
+							        <div class="list">
+									<li class="cf">
+										<h4 class="fl">   
+										      
+											<a target="_blank" class="nav-menu-subs" href="javascript:;">五金工具</a>
+										</h4>
+											<ul class="Nav-cate-detail-list">
+												<li><a target="_blank" href="javascript:;">开关插座</a></li>
+												<li><a target="_blank" href="javascript:;">工具箱</a></li>
+											</ul>	
+									</li>
+									<li class="cf">
+										<h4 class="fl">   
+										      
+											<a target="_blank" class="nav-menu-subs" href="javascript:;">卧室家具</a>
+										</h4>
+											<ul class="Nav-cate-detail-list">
+												<li><a target="_blank" href="javascript:;">床</a></li>
+												<li><a target="_blank" href="javascript:;">衣柜</a></li>
+											</ul>	
+									</li>
+								 </div>
+							</ul>
+					     	</ul>
+					</li>
+					<li class="Nav-catelist-item even">
+						<ul class="Nav-cate-sublist">
+
+							 <li><a target="_blank" href="javascript:;">黄金首饰</a></li> 
+							 <li><a target="_blank" href="javascript:;">钻石彩宝</a></li> 
+							 <li><a target="_blank" href="javascript:;">腕表</a></li> 
+							
+							
+							<ul class="Nav-cate-detail">
+							        <div class="list">
+									<li class="cf">
+										<h4 class="fl">   
+										      
+											<a target="_blank" class="nav-menu-subs" href="javascript:;">黄金首饰</a>
+										</h4>
+											<ul class="Nav-cate-detail-list">
+												<li><a target="_blank" href="javascript:;">黄金项链</a></li>
+												<li><a target="_blank" href="javascript:;">足金饰品</a></li>
+											</ul>	
+									</li>
+									<li class="cf">
+										<h4 class="fl">   
+										      
+											<a target="_blank" class="nav-menu-subs" href="javascript:;">钻石彩宝</a>
+										</h4>
+											<ul class="Nav-cate-detail-list">
+												<li><a target="_blank" href="javascript:;">结婚钻戒</a></li>
+												<li><a target="_blank" href="javascript:;">钻石耳饰</a></li>
+											</ul>	
+									</li>
+									<li class="cf">
+										<h4 class="fl">   
+										      
+											<a target="_blank" class="nav-menu-subs" href="javascript:;">腕表</a>
+										</h4>
+											<ul class="Nav-cate-detail-list">
+												<li><a target="_blank" href="javascript:;">瑞士名表</a></li>
+											</ul>	
+									</li>
+								 </div>
+							</ul>
+					     	</ul>
+					</li>
+				</ul>
+			</li>
+
+			<!--导航栏 begin -->
+                           <li class="Nav-item fl first active"><a href="javascript:;" id="nav0" onmouseover="jte(this,0)">首页</a></li>
+			          <input type="hidden" id="hidden1" value="6">
+			<li class="Nav-item fl"> <a href="javascript:;" id="nav1" class="white" onmouseover="jte(this,6)">数码</a></li>
+			          <input type="hidden" id="hidden2" value="6">
+			<li class="Nav-item fl"> <a href="javascript:;" id="nav2" class="white" onmouseover="jte(this,6)">服装</a></li>
+			          <input type="hidden" id="hidden3" value="6">
+			<li class="Nav-item fl"> <a href="javascript:;" id="nav3" class="white" onmouseover="jte(this,6)">鞋包配饰</a></li>
+			          <input type="hidden" id="hidden4" value="6">
+			<li class="Nav-item fl"> <a href="javascript:;" id="nav4" class="white" onmouseover="jte(this,6)">日用百货</a></li>
+			          <input type="hidden" id="hidden5" value="6">
+			<li class="Nav-item fl"> <a href="javascript:;" id="nav5" class="white" onmouseover="jte(this,6)">家居建材</a></li>
+			          <input type="hidden" id="hidden6" value="6">
+			<li class="Nav-item fl"> <a href="javascript:;" id="nav6" class="white" onmouseover="jte(this,6)">珠宝手表</a></li>
+         
+         
+          <script type="text/javascript">
+				 function jte(obj,n){
+				    obj.className="current";
+				     var t;
+					 var id;
+					 var s;
+					 if(n!=0){
+						 for(var i=0;i<=n;i++){
+						   id ="nav"+i;
+						   t = document.getElementById(id);
+						   if(id != obj.id){
+						   	 t.className="white";
+						   }
+						 }
+					 }else{
+						 n=document.getElementById("hidden1").value;
+						 for(var i=0;i<=n;i++){
+							   id ="nav"+i;
+							   t = document.getElementById(id);
+							   if(id != obj.id){
+							   	 t.className="white";
+							   }
+							 }
+					 }
+				 }
+   </script>
+
+			<!--导航栏 end -->
+		</ul>
+	</div>
+	<!--商品类目栏 end  --><div class="user-page-content">
+	<div class="clearfix w">
+<script type="text/javascript">
+ var productIds = HistoryRecord.record();
+ function g(o){
+		return document.getElementById(o);
+	}
+
+	 function HoverLiGuide(m,n,counter){
+			for(var i=1;i<=counter;i++){
+				g('tbg_'+m+i).className='';
+			}
+			g('tbg_'+m+n).className='current';
+	}
+	 function displayed(i){
+		   $("#ul"+i).toggle();
+		   if($("#ss"+i).attr("class")=="user_ss"){
+			  $("#ss"+i).attr("class","user_tt");
+		   }else{
+			  $("#ss"+i).attr("class","user_ss");
+		   }
+		 }	
+</script>
+
+<div class="user_menu">
+    <div class="navs" id="JS_u_navs">
+        <div id="ss1" onclick="displayed(1);"><h3><span class="s1"></span>订单中心</h3></div>
+        <ul id="ul1">
+            <li class="current" id="tbg_11" onclick="HoverLiGuide(1,1,13);"><a href="javascript:;">我的订单</a></li>
+            
+        	<li class="sep" id="tbg_13" onclick="HoverLiGuide(1,3,13);"><a href="javascript:;">退货订单</a></li>
+        	<li class="sep" id="tbg_14" onclick="HoverLiGuide(1,4,13);"><a href="javascript:;">我的收藏</a></li>
+            <li id="tbg_144" onclick="HoverLiGuide(1,44,13);">
+	        <a href="javascript:;">站内信息</a>
+	        </li>
+        	<li class="sep" id="tbg_15" onclick="HoverLiGuide(1,5,13);"><a href="javascript:;">我的优惠卷</a></li>
+        </ul>
+        
+        <div id="ss2" onclick="displayed(2);"><h4><span class="s2"></span>账户管理</h4></div>
+        <ul id="ul2">
+            <li class="sep" id="tbg_16" onclick="HoverLiGuide(1,6,13);"><a href="">我的积分</a></li>
+            <li class="sep" id="tbg_17" onclick="HoverLiGuide(1,7,13);"><a href="javascript:;">积分兑换</a></li>
+            <li class="sep" id="tbg_18" onclick="HoverLiGuide(1,8,13);"><a href="javascript:;">账户余额</a></li>
+            <li class="sep" id="tbg_19" onclick="HoverLiGuide(1,9,13);"><a href="javascript:;">收货地址</a></li>
+            <li class="sep" id="tbg_110" onclick="HoverLiGuide(1,10,13);"><a href="javascript:;">个人资料</a></li>
+            <li class="sep" id="tbg_111" onclick="HoverLiGuide(1,11,13);"><a href="javascript:;">密码管理</a></li>
+        </ul>
+        
+        <div id="ss3" onclick="displayed(3);"><h5><span class="s3"></span>服务与评价</h5></div>
+        <ul id="ul3">
+            <li class="sep" id="tbg_112" onclick="HoverLiGuide(1,11,12);"><a href="javascript:;">商品评论</a></li>
+        	<li class="sep" id="tbg_113" onclick="HoverLiGuide(1,12,12);"><a href="javascript:;">购买咨询</a></li>
+        </ul>
+    </div>
+</div>
+<script type="text/javascript">
+function checkClass(o){
+   o.className="current1";
+}
+</script>        <div id="container" class="user_main">
+        	<div class="content-one content-hei">
+                <div class="user_title">
+                    我的积分
+                    <!-- <a href="/xsrm/20.htm"  target="_blank" style="color: #1A66B3;float:right;">查看积分规则</a> -->
+                    <div class="fr" style="font-size:14px; line-height:40px;">
+                    	可用积分：<span class="red">10</span>&nbsp;&nbsp;
+                    	冻结积分：<span class="red">0</span>
+                    </div>
+                </div>
+                
+                <div id="demo2">
+                    <form id="jvForm" action="myscore.jspx" method="post">
+                    <input type="hidden" id="status" name="status" value=""> 
+                    <input type="hidden" id="useStatus" name="useStatus" value="">
+                    <div class="tab_tb" style="overflow:hidden;">
+                        <ul>
+                            <li class="first cur"><a href="javascript:vodi(0);" onclick="checkStatus(1);">全部明细 (4)</a></li>
+                            <li><a href="javascript:vodi(0);" onclick="checkUseStatus(0);">全部收入(4)</a></li>
+                            <li><a href="javascript:vodi(0);" onclick="checkUseStatus(1);">全部支出(0)</a></li>
+                            <li><a href="javascript:vodi(0);" onclick="checkStatus(0);">冻结积分(3)</a></li>
+                        </ul>
+                    </div>
+                    <div id="queryCodeNum" style="margin-bottom:10px; overflow:hidden;">
+                        <div class="fr">
+                            时间：<input type="text" name="startTime" class="ss_input" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" style="width:80px"> 
+                            至 
+                            <input type="text" name="endTime" class="ss_input" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" style="width:80px">
+                            <input id="toQuery" type="submit" value="查询" class="ss_button">
+                        </div>
+                    </div>
+                    <div class="ks-switchable-content">
+                    <div>
+                    <table width="100%" border="0" cellpadding="3" cellspacing="0" id="detailShowtab">
+                    <thead>
+                    <tr>
+                    <th height="32" bgcolor="#f0f0f0" style="text-align:left; padding-left:20px;">来源 / 用途</th>
+                    <th width="170" bgcolor="#f0f0f0">收入</th>
+                    <th width="100" bgcolor="#f0f0f0">支出</th>
+                    <th width="150" bgcolor="#f0f0f0">日期</th>
+                    <!-- <th width="105">节省</th> -->
+                    <th width="220" bgcolor="#f0f0f0">备注</th>
+                    </tr>
+                    </thead>
+                    <tbody> 
+                    <tr>
+                    <td height="50" style="padding-left:20px;">
+                    
+快乐学习                    </td>
+                    <td align="center">0(冻结)</td>
+                    <td align="center">收入</td>
+                    <td align="center">2019-10-10 19:25:48</td>
+                    <!--  <td></td> -->
+                    <td align="center"></td>
+                    </tr>
+                    <tr>
+                    <td height="50" style="padding-left:20px;">
+                    
+快乐学习                    </td>
+                    <td align="center">0(冻结)</td>
+                    <td align="center">收入</td>
+                    <td align="center">2019-10-10 19:23:36</td>
+                    <!--  <td></td> -->
+                    <td align="center"></td>
+                    </tr>
+                    <tr>
+                    <td height="50" style="padding-left:20px;">
+                    
+快乐学习                    </td>
+                    <td align="center">0(冻结)</td>
+                    <td align="center">收入</td>
+                    <td align="center">2019-10-09 13:45:25</td>
+                    <!--  <td></td> -->
+                    <td align="center"></td>
+                    </tr>
+                    <tr>
+                    <td height="50" style="padding-left:20px;">
+                    
+邮箱验证送积分                    </td>
+                    <td align="center">0(可用)</td>
+                    <td align="center">收入</td>
+                    <td align="center">2019-10-09 09:07:32</td>
+                    <!--  <td></td> -->
+                    <td align="center"></td>
+                    </tr>
+                    <tr align="center"><td colspan="5"><div class="scott">
+&nbsp;<a class="disabled">上一页</a>
+			<span class="current">1</span>
+    &nbsp;&nbsp;&nbsp;到第&nbsp;&nbsp;<input type="text" id="_goPs" class="ssinput" style="width:64px; border:#c3c3c3 1px 
+
+solid;"> 页 <button id="jumptopage" onclick="_gotoPage($('#_goPs').val(),'myscore','.jspx');" disabled="disabled" class="menu_queding">确定</button>
+</div>
+<script type="text/javascript">
+function _gotoPage(pageNo,urlp,urls) {
+	try{
+		var url =urlp+"_"+pageNo+urls;
+		 $("#tableForm").attr('action',url);    
+	     $("#tableForm").submit();   
+	} catch(e) {
+		alert('_gotoPage(pageNo)方法出错');
+	}
+}
+</script>
+</td></tr>
+                    </tbody>
+                    </table>
+                    </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clear"></div>
+<div class="Footer">
+    <div class="footer-icon">
+        <div class="w">
+                        <a href="javascript:;" target="_blank" class="icon-map">
+            <p class="icon-bg i1"></p>
+            <p class="icon-title">100%正品</p>
+            </a>
+            <a href="javascript:;" target="_blank" class="icon-map">
+            <p class="icon-bg i2"></p>
+            <p class="icon-title">双重质检</p>
+            </a>
+            <a href="javascript:;" target="_blank" class="icon-map">
+            <p class="icon-bg i3"></p>
+            <p class="icon-title">全球化采购</p>
+            </a>
+            <a href="javascript:;" target="_blank" class="icon-map">
+            <p class="icon-bg i4"></p>
+            <p class="icon-title">无理由退货</p>
+            </a>
+            <a href="javascript:;" target="_blank" class="icon-map">
+            <p class="icon-bg i5"></p>
+            <p class="icon-title">贵就赔</p>
+            </a>
+            <a href="javascript:;" target="_blank" class="icon-map">
+            <p class="icon-bg i6"></p>
+            <p class="icon-title">万千口碑</p>
+            </a>
+        </div>
+    </div>
+
+	<!-- 帮助中心栏目start -->
+    <div class="Footer-block pt20 pb20 ctr cf">
+        <ul class="Sitemap fl cf">
+            <li class="Sitemap-item fl">
+            <h4>
+            <a target="_blank" href="javascript:;">新手入门</a>
+            </h4>
+            <ul>
+            <li><a href="javascript:;" class="track2" target="_blank">积分说明</a></li>
+            <li><a href="javascript:;" class="track2" target="_blank">购买流程</a></li>
+            <li><a href="javascript:;" class="track2" target="_blank">账户注册</a></li>
+            <li><a href="javascript:;" class="track2" target="_blank">大宗购物</a></li>
+            </ul>
+            </li> 
+            <li class="Sitemap-item fl">
+            <h4>
+            <a target="_blank" href="javascript:;">网站公告</a>
+            </h4>
+            <ul>
+            <li><a href="javascript:;" class="track2" target="_blank">最新商品</a></li>
+            </ul>
+            </li> 
+            <li class="Sitemap-item fl">
+            <h4>
+            <a target="_blank" href="javascript:;">新闻中心</a>
+            </h4>
+            <ul>
+            <li><a href="javascript:;" class="track2" target="_blank">jspgou v5.0即将发布</a></li>
+            </ul>
+            </li> 
+            <li class="Sitemap-item fl">
+            <h4>
+            <a target="_blank" href="javascript:;">热门促销</a>
+            </h4>
+            <ul>
+            <li><a href="javascript:;" class="track2" target="_blank">热门促销</a></li>
+            </ul>
+            </li> 
+            <li class="Sitemap-item fl">
+            <h4>
+            <a target="_blank" href="javascript:;">配送范围及时间</a>
+            </h4>
+            <ul>
+            <li><a href="javascript:;" class="track2" target="_blank">订单拆分</a></li>
+            <li><a href="javascript:;" class="track2" target="_blank">海外配送</a></li>
+            <li><a href="javascript:;" class="track2" target="_blank">国内配送</a></li>
+            </ul>
+            </li> 
+        </ul>
+        <div class="QR fl">
+            <img class="QR-img" src="static/picture/jspgou-wx.jpg">
+        </div>
+    </div>
+	<!-- 帮助中心栏目 end-->
+
+    <div class="Copyright">
+        <div class="ctr tac">
+            <a href="javascript:;" target="_blank">关于JSPGOU</a> |
+            <a href="javascript:;" target="_blank">最新资讯</a> |
+            <a href="javascript:;" target="_blank">帮助中心</a> |
+            <a href="javascript:;" target="_blank">隐私保护</a> |
+            <a href="javascript:;" target="_blank">网站导航</a> |
+            <a href="javascript:;" target="_blank">联系我们</a> 
+        </div>
+        <div class="ctr tac">Copyright © JSPGOU 2017，All Rights Reserved</div>
+    </div>
+</div></body>
+</html>
